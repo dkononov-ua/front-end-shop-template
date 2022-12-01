@@ -29,6 +29,8 @@ const getMockData = (t) =>
     "$1.$2"
   );
 
+const getPrice = (t, price) => Math.round((price + getMockData(t)) * 100) / 100;
+
 const btnClickHandler = (e) => {
   const target = e.target;
   const interval = 2000;
@@ -38,14 +40,11 @@ const btnClickHandler = (e) => {
 
   if (target && target.classList.contains("item-actions__cart")) {
     cartCounter = incrementCounter(cartCounterLabel, cartCounter);
-
-    const mockData = getMockData(target);
-
-    console.log(mockData);
+    cartPrice = getPrice(target, cartPrice);
 
     disableControls(target, btnClickHandler);
     restoreHTML = target.innerHTML;
-    target.innerHTML = "у кошику";
+    target.innerHTML = `Added ${cartPrice.toFixed(2)} $`;
 
     setTimeout(() => {
       enableControls(target, btnClickHandler);
