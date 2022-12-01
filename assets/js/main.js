@@ -23,6 +23,12 @@ const enableControls = (t, fn) => {
   contentContainer.addEventListener("click", fn);
 };
 
+const getMockData = (t) =>
+  +t.parentElement.previousElementSibling.innerHTML.replace(
+    /^\$(\d+)\s\D*(\d+).*$/,
+    "$1.$2"
+  );
+
 const btnClickHandler = (e) => {
   const target = e.target;
   const interval = 2000;
@@ -32,6 +38,10 @@ const btnClickHandler = (e) => {
 
   if (target && target.classList.contains("item-actions__cart")) {
     cartCounter = incrementCounter(cartCounterLabel, cartCounter);
+
+    const mockData = getMockData(target);
+
+    console.log(mockData);
 
     disableControls(target, btnClickHandler);
     restoreHTML = target.innerHTML;
