@@ -1,4 +1,3 @@
-/* eslint-disable curly */
 export let basketContainer = null;
 
 let basketBtnContainer;
@@ -23,7 +22,7 @@ const createBasketContainer = (c) => {
     attrs: {class: 'well basket__container'},
     container: headerNavbar});
   createElement({type: 'p',
-    attrs: {innerText: `В корзине ${c} товаров`},
+    attrs: {innerText: `There are ${c} items in the cart`},
     container: basketContainer});
 };
 
@@ -36,18 +35,18 @@ const createBasketBtn = (count, container) => {
     attrs: {class: 'btn btn-primary basket__btn-next',
       id: 'btn-next',
       type: 'button',
-      innerText: 'Продолжить покупки'},
+      innerText: 'Continue Shopping'},
     container: basketBtnContainer});
   if (count > 0) {
     createElement({type: 'button',
       attrs: {class: 'btn btn-primary basket__btn-clear',
         type: 'button',
-        innerText: 'Очистить корзину'},
+        innerText: 'Сlear cart'},
       container: basketBtnContainer});
     createElement({type: 'button',
       attrs: {class: 'btn btn-primary basket__btn-order',
         type: 'submit',
-        innerText: 'Оформить заказ'},
+        innerText: 'Order'},
       container: basketBtnContainer});
   }
 };
@@ -72,18 +71,18 @@ const createBasketList = (container, arr) => {
       type: 'span',
       attrs: {
         class: 'basket__item-count',
-        innerText: `- ${el.count} шт  `
+        innerText: `- ${el.count} pcs.  `
       },
       container: basketItem
     });
     createElement({
       type: 'span',
-      attrs: {innerText: `цена ${el.price.toFixed(2)}$  `},
+      attrs: {innerText: `price ${el.price.toFixed(2)}$  `},
       container: basketItem
     });
     createElement({
       type: 'span',
-      attrs: {innerText: `сумма: ${el.sum.toFixed(2)}$`},
+      attrs: {innerText: `sum: ${el.sum.toFixed(2)}$`},
       container: basketItem
     });
     createElement({
@@ -98,7 +97,7 @@ const createBasketList = (container, arr) => {
     type: 'div',
     attrs: {
       class: 'basket__total',
-      innerText: `Всего в корзине товаров на сумму ${sum.toFixed(2)}$`
+      innerText: `Total items in the cart for the amount <br> ${sum.toFixed(2)}$`
     },
     container
   });
@@ -114,11 +113,11 @@ const createStyle = () => {
       }
       
       .basket__container {
-        background-color: rgb(150, 200, 241);
+        background-color: rgba(255, 255, 255, 0.8);
         position: absolute;
         padding: 10px;
         bottom: 0;
-        right: 0;
+        right: 100px;
         transform: translateY(100%);
         z-index: 1000;
         border: 1px solid #2d8df3;
@@ -132,15 +131,17 @@ const createStyle = () => {
         margin: 10px auto 10px auto;
         text-align: center;
         font-size: 18px;
+        color: red;
       }
       .basket__btn-container {
         display: flex;
         gap: 10px;
+        justify-content: center;
       }
       .basket__item-container {
         display: flex;
         gap: 10px;
-        justify-content: space-evenly;
+        justify-content: space-between;
         border-bottom: 1px solid lightblue;
       }
       .basket__item-del {
